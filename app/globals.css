@@ -1,42 +1,64 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@import "tailwindcss";
+
+/* Theme classes for light, dark, and retro */
+.theme-light {
+  --theme-bg: #f8fafc; /* off-white */
+  --theme-text: #000;
+  --theme-accent: #334155; /* slate-700 */
+  --theme-border: #334155; /* slate-700 */
+}
+.theme-dark {
+  --theme-bg: #0a1622; /* deep blue-black */
+  --theme-text: #f3f4f6;
+  --theme-accent: #60a5fa; /* blue-400 */
+  --theme-border: #334155; /* slate-700 */
+  --theme-card: #18181b;
+  --theme-card-border: #27272a;
+  --theme-card-text: #e5e7eb;
+  --theme-tag-bg: #334155;
+  --theme-tag-text: #cbd5e1;
+}
+.theme-retro {
+  --theme-bg: #EEEEEE; /* background */
+  --theme-text: #2A4759; /* text */
+  --theme-accent: #F79B72; /* accent */
+  --theme-border: #DDDDDD; /* border */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  background: var(--theme-bg);
+  color: var(--theme-text);
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html::selection {
+  background: #000000;
+  color: #ffffff;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+.theme-dark html::selection {
+  background: #ffffff;
+  color: #000000;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+.bg-retrobg { background: var(--theme-bg) !important; }
+.text-retrotext { color: var(--theme-text) !important; }
+.border-retroborder { border-color: var(--theme-border) !important; }
+.text-retroaccent { color: var(--theme-accent) !important; }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* Homepage component overrides for dark mode */
+.theme-dark .bg-white {
+  background: var(--theme-card) !important;
+}
+.theme-dark .border-retroborder {
+  border-color: var(--theme-card-border) !important;
+}
+.theme-dark .text-retrotext {
+  color: var(--theme-card-text) !important;
+}
+.theme-dark .text-retroaccent {
+  color: var(--theme-accent) !important;
+}
+.theme-dark .bg-retrogreen\/40 {
+  background: var(--theme-tag-bg) !important;
+  color: var(--theme-tag-text) !important;
 }
