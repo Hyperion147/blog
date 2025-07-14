@@ -130,7 +130,7 @@ export default function Home({ params }) {
       </div>
       {/* GitHub button bottom right */}
       <div ref={githubButtonRef} className="fixed bottom-6 right-8 z-50">
-        <Link href="https://github.com/Hyperion147" target="_blank" rel="noopener noreferrer">
+        <Link href="https://github.com/Hyperion147/blog" target="_blank" rel="noopener noreferrer">
           <button
             className="relative inline-flex h-8 w-32 overflow-hidden rounded-full p-[1px] focus:outline-none"
             style={{ fontFamily: 'Roboto, sans-serif' }}
