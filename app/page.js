@@ -8,6 +8,7 @@ import { blogs } from "./blogs/blogData";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Github } from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 
 export default function Home({ params }) {
   const headerRef = useRef(null);
@@ -90,7 +91,8 @@ export default function Home({ params }) {
         >
           <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
           <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-retrobg px-4 py-1 text-sm font-medium text-retrotext backdrop-blur-3xl">
-            Theme
+            <span className="block md:hidden">{theme === 'dark' ? <Moon size={18} /> : <Sun size={18} />}</span>
+            <span className="hidden md:block">Theme</span>
           </span>
         </button>
         {themeMenuOpen && (
@@ -132,13 +134,13 @@ export default function Home({ params }) {
       <div ref={githubButtonRef} className="fixed bottom-6 right-8 z-50">
         <Link href="https://github.com/Hyperion147/blog" target="_blank" rel="noopener noreferrer">
           <button
-            className="relative inline-flex h-8 w-32 overflow-hidden rounded-full p-[1px] focus:outline-none"
+            className="relative inline-flex h-8 w-24 overflow-hidden rounded-full p-[1px] focus:outline-none"
             style={{ fontFamily: 'Roboto, sans-serif' }}
           >
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
             <span className="inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-retrobg px-4 py-1 text-sm font-medium text-retrotext backdrop-blur-3xl">
               <Github size={18} color={githubIconColor} />
-              GitHub
+              Star
             </span>
           </button>
         </Link>

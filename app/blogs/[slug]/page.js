@@ -1,13 +1,16 @@
 "use client"
+import * as React from "react";
 import { notFound } from "next/navigation";
 import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import Link from "next/link";
 import { blogs } from "../blogData";
 import { useTheme } from "@/components/ThemeProvider";
+import { Book, Sun, Moon } from "lucide-react";
 
 export default function BlogPage({ params }) {
-  const blog = blogs.find((b) => b.slug === params.slug);
+  const { slug } = React.use(params);
+  const blog = blogs.find((b) => b.slug === slug);
   const containerRef = useRef(null);
   const buttonRef = useRef(null);
   const themeButtonRef = useRef(null);
@@ -49,6 +52,22 @@ export default function BlogPage({ params }) {
     }
   }, [themeMenuOpen]);
 
+  useEffect(() => {
+    if (themeMenuOpen && themeButtonRef.current) {
+      gsap.to(themeButtonRef.current.querySelector('button'), {
+        width: '128px', // md:w-32
+        duration: 0.35,
+        ease: 'power2.out',
+      });
+    } else if (!themeMenuOpen && themeButtonRef.current) {
+      gsap.to(themeButtonRef.current.querySelector('button'), {
+        width: '32px', // w-8
+        duration: 0.35,
+        ease: 'power2.in',
+      });
+    }
+  }, [themeMenuOpen]);
+
   const handleThemeSelect = (selectedTheme) => {
     if (dropdownRef.current) {
       gsap.to(dropdownRef.current, {
@@ -72,29 +91,30 @@ export default function BlogPage({ params }) {
   return (
     <>
       {/* Blogs button top left */}
-      <div ref={buttonRef} className="absolute top-6 left-8 z-50">
+      <div ref={buttonRef} className="absolute top-6 left-4 z-50">
         <Link href="/">
           <button
-            className="relative inline-flex h-8 w-32 overflow-hidden rounded-full p-[1px] focus:outline-none"
+            className="relative inline-flex h-8 w-8 md:w-32 overflow-hidden rounded-full p-[1px] focus:outline-none md:px-0"
             style={{ fontFamily: 'Roboto, sans-serif' }}
           >
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-retrobg px-4 py-1 text-sm font-medium text-retrotext backdrop-blur-3xl">
-              Blogs
+            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-retrobg px-0 md:px-4 py-1 text-xs md:text-sm font-medium text-retrotext backdrop-blur-3xl">
+              <span className="block md:hidden"><Book size={18} /></span>
+              <span className="hidden md:block">Blogs</span>
             </span>
           </button>
         </Link>
       </div>
       {/* Theme selector button top right */}
-      <div ref={themeButtonRef} className="absolute top-6 right-8 z-50">
+      <div ref={themeButtonRef} className="absolute top-6 right-4 z-50">
         <button
           onClick={() => setThemeMenuOpen((open) => !open)}
-          className="relative inline-flex h-8 w-32 overflow-hidden rounded-full p-[1px] focus:outline-none"
-          style={{ fontFamily: 'Roboto, sans-serif' }}
+          className="relative inline-flex h-8 w-8 overflow-hidden rounded-full p-[1px] focus:outline-none"
+          style={{ fontFamily: 'Roboto, sans-serif', width: '32px', transition: 'width 0.35s cubic-bezier(0.4,0,0.2,1)' }}
         >
           <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-retrobg px-4 py-1 text-sm font-medium text-retrotext backdrop-blur-3xl">
-            Theme
+          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-retrobg px-0 py-1 text-xs font-medium text-retrotext backdrop-blur-3xl">
+            {theme === 'dark' ? <Moon size={18} /> : <Sun size={18} />}
           </span>
         </button>
         {themeMenuOpen && (
@@ -122,7 +142,7 @@ export default function BlogPage({ params }) {
           </div>
         )}
       </div>
-      <div ref={containerRef} className="max-w-2xl mx-auto py-12 px-4">
+      <div ref={containerRef} className="max-w-2xl mx-auto py-12 px-4 pt-16 md:pt-12">
         <h1 className="text-3xl font-extrabold mb-2 text-retroaccent">{blog.title}</h1>
         <div className="flex gap-2 mb-4">
           {blog.tags.map((tag, i) => (
