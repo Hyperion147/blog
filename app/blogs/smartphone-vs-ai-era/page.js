@@ -1,16 +1,15 @@
 "use client"
 import * as React from "react";
-import { notFound } from "next/navigation";
 import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import Link from "next/link";
-import { blogs } from "../blogData";
 import { useTheme } from "@/components/ThemeProvider";
 import { Book, Sun, Moon } from "lucide-react";
+import { Barlow } from "next/font/google";
 
-export default function BlogPage({ params }) {
-  const { slug } = React.use(params);
-  const blog = blogs.find((b) => b.slug === slug);
+const barlow = Barlow({ subsets: ["latin"], weight: ["700"] });
+
+export default function BlogPage() {
   const containerRef = useRef(null);
   const buttonRef = useRef(null);
   const themeButtonRef = useRef(null);
@@ -55,13 +54,13 @@ export default function BlogPage({ params }) {
   useEffect(() => {
     if (themeMenuOpen && themeButtonRef.current) {
       gsap.to(themeButtonRef.current.querySelector('button'), {
-        width: '128px', // md:w-32
+        width: '128px',
         duration: 0.35,
         ease: 'power2.out',
       });
     } else if (!themeMenuOpen && themeButtonRef.current) {
       gsap.to(themeButtonRef.current.querySelector('button'), {
-        width: '32px', // w-8
+        width: '32px',
         duration: 0.35,
         ease: 'power2.in',
       });
@@ -87,20 +86,80 @@ export default function BlogPage({ params }) {
     }
   };
 
-  if (!blog) return notFound();
+  // Blog content (personalized)
+  const title = "Smartphone v/s AI -era-";
+  const date = "June 2024";
+  const tags = ["AI", "Technology", "Trends"];
+  const contentStart = `<p>Remember when smartphones first took over? One day you were flipping a Nokia brick, and the next, you’re arguing with Siri about the weather. Now, AI’s doing the same—whispering sweet nothings like:</p>`;
+  const contentPitch = `<em>“Here’s a poem about your cat in the style of Shakespeare”</em>— and we’re all just along for the ride. But will AI’s rise mirror the smartphone revolution, or are we in for a plot twist?`;
+  const contentBold1 = `<br>1. The Smartphone Boom: A Quick Throwback`;
+  const contentBody11 = `2007: iPhone drops. People lose their minds.<br><em>“It’s a phone, iPod, and internet device? Witchcraft!”</em>`;
+  const contentBody12 = `2010s: Smartphones become extensions of our hands (and souls).<br> <em>We date, bank, and cry over memes on them.</em>`;
+  const contentBody13 = `Today: Try leaving home without your phone.<br><em>Panic. Sweating. Existential dread.</em>`;
+  const contentBold2 = `2. How AI’s Path Could Mirror Smartphones`;
+  const contentBody21 = ``;
+
+  const tagDescriptions = {
+    AI: "Artificial Intelligence",
+    Technology: "Tools, devices, and innovations.",
+    Trends: "What's popular!"
+  };
+
+  // TagWithTooltip component
+  function TagWithTooltip({ tag, description }) {
+    const [show, setShow] = useState(false);
+    const tooltipRef = useRef(null);
+    useEffect(() => {
+      if (show && tooltipRef.current) {
+        gsap.fromTo(
+          tooltipRef.current,
+          { opacity: 0, y: 8, pointerEvents: 'none' },
+          { opacity: 1, y: 0, pointerEvents: 'auto', duration: 0.18, ease: 'power2.out' }
+        );
+      } else if (!show && tooltipRef.current) {
+        gsap.to(tooltipRef.current, {
+          opacity: 0,
+          y: 8,
+          pointerEvents: 'none',
+          duration: 0.12,
+          ease: 'power2.in',
+        });
+      }
+    }, [show]);
+    return (
+      <span
+        className="relative bg-retroaccent/10 text-retroaccent px-2 py-0.5 rounded text-xs font-mono border border-retroborder transition-colors duration-200 hover:bg-retroaccent/20 hover:text-retroblue cursor-pointer"
+        onMouseEnter={() => setShow(true)}
+        onMouseLeave={() => setShow(false)}
+        onFocus={() => setShow(true)}
+        onBlur={() => setShow(false)}
+        tabIndex={0}
+        style={{ outline: 'none' }}
+      >
+        {tag}
+        <span
+          ref={tooltipRef}
+          className="absolute left-1/2 -translate-x-1/2 top-full mt-1 z-20 px-2 py-1 rounded bg-retrobg text-retrotext text-xs shadow-lg border border-retroborder whitespace-nowrap pointer-events-none select-none"
+          style={{ opacity: 0, pointerEvents: 'none' }}
+        >
+          {description}
+        </span>
+      </span>
+    );
+  }
+
   return (
     <>
       {/* Blogs button top left */}
       <div ref={buttonRef} className="absolute top-6 left-4 z-50">
         <Link href="/">
           <button
-            className="relative inline-flex h-8 w-8 md:w-32 overflow-hidden rounded-full p-[1px] focus:outline-none md:px-0"
+            className="relative inline-flex h-8 w-8 overflow-hidden rounded-full p-[1px] focus:outline-none"
             style={{ fontFamily: 'Roboto, sans-serif' }}
           >
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-retrobg px-0 md:px-4 py-1 text-xs md:text-sm font-medium text-retrotext backdrop-blur-3xl">
-              <span className="block md:hidden"><Book size={18} /></span>
-              <span className="hidden md:block">Blogs</span>
+            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-retrobg px-0 py-1 text-xs font-medium text-retrotext backdrop-blur-3xl">
+              <Book size={18} />
             </span>
           </button>
         </Link>
@@ -143,16 +202,21 @@ export default function BlogPage({ params }) {
         )}
       </div>
       <div ref={containerRef} className="max-w-2xl mx-auto py-12 px-4 pt-16 md:pt-12">
-        <h1 className="text-3xl font-extrabold mb-2 text-retroaccent">{blog.title}</h1>
+        <h1 className={`text-3xl font-extrabold mb-2 text-retroaccent ${barlow.className}`}>{title}</h1>
         <div className="flex gap-2 mb-4">
-          {blog.tags.map((tag, i) => (
-            <span key={i} className="bg-retroaccent/10 text-retroaccent px-2 py-0.5 rounded text-xs font-mono border border-retroborder">
-              {tag}
-            </span>
+          {tags.map((tag, i) => (
+            <TagWithTooltip key={i} tag={tag} description={tagDescriptions[tag] || tag} />
           ))}
         </div>
-        <div className="text-xs text-retroblue font-mono mb-6">{blog.date}</div>
-        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: blog.content }} />
+        <div className="text-xs text-retroblue font-mono mb-4">{date}</div>
+        <div className="prose prose-retro max-w-none opacity-70" dangerouslySetInnerHTML={{ __html: contentStart }} />
+        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentPitch }} />
+        <div className="prose prose-retro max-w-none font-bold" dangerouslySetInnerHTML={{ __html: contentBold1 }} />
+        <div className="prose prose-retro max-w-none pl-4" dangerouslySetInnerHTML={{ __html: contentBody11 }} />
+        <div className="prose prose-retro max-w-none pl-4" dangerouslySetInnerHTML={{ __html: contentBody12 }} />
+        <div className="prose prose-retro max-w-none pl-4" dangerouslySetInnerHTML={{ __html: contentBody13 }} />
+        {/* <div className="prose prose-retro max-w-none font-bold" dangerouslySetInnerHTML={{ __html: contentBold2 }} />
+        <div className="prose prose-retro max-w-none pl-4" dangerouslySetInnerHTML={{ __html: contentBody21 }} /> */}
       </div>
     </>
   );

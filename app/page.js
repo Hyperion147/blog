@@ -3,12 +3,10 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useTheme } from "@/components/ThemeProvider";
 import * as React from "react";
-import BlogList from "@/components/BlogList";
-import { blogs } from "./blogs/blogData";
-import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Github } from "lucide-react";
-import { Sun, Moon } from "lucide-react";
+import { Github, Sun, Moon } from "lucide-react";
+// Import preview content from the blog page
+import SmartphoneBlog from "./blogs/smartphone-vs-ai-era/page";
 
 export default function Home({ params }) {
   const headerRef = useRef(null);
@@ -81,6 +79,25 @@ export default function Home({ params }) {
     }
   }, []);
 
+  // BlogPreview component for consistent styling
+  function BlogPreview({ title, date, tags, excerpt, href }) {
+    return (
+      <Link
+        href={href}
+        className="w-full max-w-xl sm:max-w-lg md:max-w-xl rounded-2xl border border-retroborder bg-retrobg/90 p-4 sm:p-6 md:p-7 transition-shadow duration-300 hover:shadow-2xl group cursor-pointer block no-underline hover:shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.2),_15px_15px_rgba(0,_98,_90,_0.05)] dark:hover:shadow-[5px_5px_rgba(60,_120,_255,_0.4),_10px_10px_rgba(60,_120,_255,_0.2),_15px_15px_rgba(60,_120,_255,_0.05)] theme-retro:hover:shadow-[5px_5px_rgba(247,_155,_114,_0.4),_10px_10px_rgba(247,_155,_114,_0.2),_15px_15px_rgba(247,_155,_114,_0.05)]"
+      >
+        <h2 className="text-xl sm:text-2xl font-extrabold text-retroaccent mb-2">{title}</h2>
+        <div className="flex gap-2 mb-2 flex-wrap">
+          {tags.map((tag, i) => (
+            <span key={i} className="bg-retroaccent/10 text-retroaccent px-2 py-0.5 rounded text-xs sm:text-sm font-mono border border-retroborder">{tag}</span>
+          ))}
+        </div>
+        <div className="text-xs sm:text-sm text-retroblue font-mono mb-3">{date}</div>
+        <div className="text-retrotext/80 text-sm sm:text-base mb-2 line-clamp-3">{excerpt}</div>
+      </Link>
+    );
+  }
+
   return (
     <div className="h-screen w-screen bg-retrobg text-retrotext flex flex-col font-retro overflow-hidden scrollbar-hide relative font-bolder">
       {/* Theme Selector Button (top right) */}
@@ -145,16 +162,24 @@ export default function Home({ params }) {
           </button>
         </Link>
       </div>
-      <main className="flex-1 flex flex-col items-center justify-center px-4 w-full">
-        <section ref={headerRef} className="w-full max-w-3xl text-center mb-12">
+      <main className="flex-1 flex flex-col items-center justify-center px-2 sm:px-4 w-full pt-6 md:pt-0">
+        <section ref={headerRef} className="w-full max-w-3xl text-center mb-4 md:mb-8 px-2 sm:px-0">
           <div className="flex items-center justify-center gap-4">
             <h1 className="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight text-retrotext drop-shadow-sm">
               <span className="text-retroaccent">blog</span> | <span className="text-retroblue">hyper</span>
             </h1>
           </div>
         </section>
-        <section ref={postsRef} className="w-full max-w-4xl mb-10">
-          <BlogList blogs={blogs} />
+        <section ref={postsRef} className="w-full max-w-4xl mb-8 sm:mb-10 px-1 sm:px-0">
+          <div className="flex flex-col items-center gap-6">
+            <BlogPreview
+              title="Smartphone era v/s AI era"
+              date="June 2024"
+              tags={['AI', 'Technology', 'Trends']}
+              excerpt="Remember when smartphones first took over? One day you were flipping a Nokia brick, and the next, you’re arguing with Siri about the weather. Now, AI’s doing the same—whispering sweet nothings like: “Here’s a poem about your cat in the style of Shakespeare”—and we’re all just along for the ride."
+              href="/blogs/smartphone-vs-ai-era"
+            />
+          </div>
         </section>
       </main>
       <footer ref={footerRef} className="w-full py-6 border-t border-retroborder text-center text-retrotext/60 text-base flex items-center justify-center bg-retrobg font-mono">
