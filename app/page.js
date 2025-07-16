@@ -163,7 +163,7 @@ export default function Home({ params }) {
         <section ref={headerRef} className="w-full max-w-3xl text-center mb-4 md:mb-8 px-2 sm:px-0">
           <div className="flex items-center justify-center gap-4">
             <h1 className="text-5xl md:text-6xl font-extrabold mb-4 tracking-tight text-retrotext drop-shadow-sm">
-              <span className="text-retroaccent">blog</span> | <span className="text-retroblue">hyper</span>
+              <span className="text-retroaccent">blog</span> | <span className="text-retroblue">suryansu</span>
             </h1>
           </div>
         </section>
@@ -180,7 +180,7 @@ export default function Home({ params }) {
         </section>
       </main>
       <footer ref={footerRef} className="w-full py-6 border-t border-retroborder text-center text-retrotext/60 text-base flex items-center justify-center bg-retrobg font-mono">
-        <span className="w-full">© {new Date().getFullYear()} blog | hyper. All rights reserved.</span>
+        <span className="w-full">© {new Date().getFullYear()} blog | suryansu. All rights reserved.</span>
       </footer>
     </div>
   );
