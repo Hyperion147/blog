@@ -88,16 +88,30 @@ export default function BlogPage() {
 
   // Blog content (personalized)
   const title = "Smartphone v/s AI -era-";
-  const date = "June 2024";
+  const date = "July 2025";
   const tags = ["AI", "Technology", "Trends"];
   const contentStart = `<p>Remember when smartphones first took over? One day you were flipping a Nokia brick, and the next, you’re arguing with Siri about the weather. Now, AI’s doing the same—whispering sweet nothings like:</p>`;
   const contentPitch = `<em>“Here’s a poem about your cat in the style of Shakespeare”</em>— and we’re all just along for the ride. But will AI’s rise mirror the smartphone revolution, or are we in for a plot twist?`;
-  const contentBold1 = `<br>1. The Smartphone Boom: A Quick Throwback`;
-  const contentBody11 = `2007: iPhone drops. People lose their minds.<br><em>“It’s a phone, iPod, and internet device? Witchcraft!”</em>`;
+  const contentBold1 = `<br>The Smartphone Boom: A Quick Throwback`;
+  const contentBody11 = `2007: iPhone drops. People lose their minds.<br><em>“It’s a phone, iPod, and internet device?”</em>`;
   const contentBody12 = `2010s: Smartphones become extensions of our hands (and souls).<br> <em>We date, bank, and cry over memes on them.</em>`;
   const contentBody13 = `Today: Try leaving home without your phone.<br><em>Panic. Sweating. Existential dread.</em>`;
-  const contentBold2 = `2. How AI’s Path Could Mirror Smartphones`;
-  const contentBody21 = ``;
+  const contentBold2 = `How AI’s Path Could Mirror Smartphones`;
+  const contentBody21 = `Then: “Why would I need apps?<b> I have a computer.</b>”`;
+  const contentBody22 = `Now: “Alexa, add ‘existential crisis’ to my shopping list.”`;
+  const contentBody23 = `AI is following the same hype-to-habit pipeline.`;
+  const contentBody24 = `AI is already in your phone, your fridge, your car’s GPS.`;
+  const contentBody25 = `AI’s spawning content farms, deepfake drama, and <em>“Did a bot just write my kid’s essay?”</em>`;
+  const contentBold3 = `<b>Why AI Might Be Even Bigger</b> (or we!rder)`;
+  const contentBody31 = `Smartphones sit in your pocket. <b>AI?</b> Knows you secretly love ~yodeling videos.`;
+  const contentBody32 = `Your phone doesn’t evolve. <b>AI does.</b><br> Cue <em>“Wait, it’s getting smarter? Should we unplug it?”</em> debates.`;
+  const contentBody33 = `Smartphones didn’t write novels or fake Drake songs.`;
+  const contentBody34 = `AI’s out here generating stuff—art, code, conspiracy theories. What’s next, AI stand-up comedy?<br> <em>…Actually, we should try every idea.<em>`;
+  const contentBold4 = `Final Verdict: Same Impact, Different Game`;
+  const contentBody41 = `<b>Like smartphones?</b> Yes—AI will reshape jobs, habits, and how we (iota) procrastinate.`;
+  const contentBody42 = `<b>Different?</b> Absolutely. Smartphones connected us. AI might replace us <em>kidding… mostly.</em>`;
+  const contentBody43 = `One thing’s certain: In 10 years, we’ll laugh at how we once typed database queries instead of just thinking them into the AI hive mind.<br> Goodluck for the upcoming years. AI might not replace you <b><em>~someone using AI will.</em></b>`;
+  const contentSign = `<em>Until we meet next time!</em>`;
 
   const tagDescriptions = {
     AI: "Artificial Intelligence",
@@ -139,7 +153,7 @@ export default function BlogPage() {
         {tag}
         <span
           ref={tooltipRef}
-          className="absolute left-1/2 -translate-x-1/2 top-full mt-1 z-20 px-2 py-1 rounded bg-retrobg text-retrotext text-xs shadow-lg border border-retroborder whitespace-nowrap pointer-events-none select-none"
+          className="absolute left-1/2 -translate-x-1/2 top-full mt-1 z-20 px-2 py-1 rounded bg-retrobg text-retrotext text-xs shadow-lg border border-retroborder whitespace-nowrap pointer-events-none select-none hidden md:flex"
           style={{ opacity: 0, pointerEvents: 'none' }}
         >
           {description}
@@ -151,7 +165,7 @@ export default function BlogPage() {
   return (
     <>
       {/* Blogs button top left */}
-      <div ref={buttonRef} className="absolute top-6 left-4 z-50">
+      <div ref={buttonRef} className="absolute top-6 left-6 z-50">
         <Link href="/">
           <button
             className="relative inline-flex h-8 w-8 overflow-hidden rounded-full p-[1px] focus:outline-none"
@@ -165,7 +179,7 @@ export default function BlogPage() {
         </Link>
       </div>
       {/* Theme selector button top right */}
-      <div ref={themeButtonRef} className="absolute top-6 right-4 z-50">
+      <div ref={themeButtonRef} className="absolute top-6 right-6 z-50">
         <button
           onClick={() => setThemeMenuOpen((open) => !open)}
           className="relative inline-flex h-8 w-8 overflow-hidden rounded-full p-[1px] focus:outline-none"
@@ -208,15 +222,30 @@ export default function BlogPage() {
             <TagWithTooltip key={i} tag={tag} description={tagDescriptions[tag] || tag} />
           ))}
         </div>
-        <div className="text-xs text-retroblue font-mono mb-4">{date}</div>
+        <div className="text-xs text-retroblue font-bold font-mono">{date}</div>
         <div className="prose prose-retro max-w-none opacity-70" dangerouslySetInnerHTML={{ __html: contentStart }} />
         <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentPitch }} />
         <div className="prose prose-retro max-w-none font-bold" dangerouslySetInnerHTML={{ __html: contentBold1 }} />
-        <div className="prose prose-retro max-w-none pl-4" dangerouslySetInnerHTML={{ __html: contentBody11 }} />
-        <div className="prose prose-retro max-w-none pl-4" dangerouslySetInnerHTML={{ __html: contentBody12 }} />
-        <div className="prose prose-retro max-w-none pl-4" dangerouslySetInnerHTML={{ __html: contentBody13 }} />
-        {/* <div className="prose prose-retro max-w-none font-bold" dangerouslySetInnerHTML={{ __html: contentBold2 }} />
-        <div className="prose prose-retro max-w-none pl-4" dangerouslySetInnerHTML={{ __html: contentBody21 }} /> */}
+        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody11 }} />
+        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody12 }} />
+        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody13 }} />
+        <div className="prose prose-retro max-w-none font-bold mt-4" dangerouslySetInnerHTML={{ __html: contentBold2 }} />
+        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody21 }} />
+        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody22 }} />
+        <div className="prose prose-retro max-w-none font-semibold" dangerouslySetInnerHTML={{ __html: contentBody23 }} />
+        <div className="prose prose-retro max-w-none font-semibold" dangerouslySetInnerHTML={{ __html: contentBody24 }} />
+        <div className="prose prose-retro max-w-none font-semibold" dangerouslySetInnerHTML={{ __html: contentBody25 }} />
+        <div className="prose prose-retro max-w-none mt-4" dangerouslySetInnerHTML={{ __html: contentBold3 }} />
+        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody31 }} />
+        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody32 }} />
+        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody33 }} />
+        <div className="prose prose-retro max-w-none font-semibold" dangerouslySetInnerHTML={{ __html: contentBody34 }} />
+        <div className="prose prose-retro max-w-none mt-4 font-bold" dangerouslySetInnerHTML={{ __html: contentBold4 }} />
+        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody41 }} />
+        <p className="text-xs">iota in mathematics means "i" ~ me</p>
+        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody42 }} />
+        <div className="prose prose-retro max-w-none mt-4 font-medium text-center" dangerouslySetInnerHTML={{ __html: contentBody43 }} />
+        <div className="prose prose-retro max-w-none mt-2 text-xs text-right" dangerouslySetInnerHTML={{ __html: contentSign }} />
       </div>
     </>
   );

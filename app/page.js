@@ -84,7 +84,7 @@ export default function Home({ params }) {
     return (
       <Link
         href={href}
-        className="w-full max-w-xl sm:max-w-lg md:max-w-xl rounded-2xl border border-retroborder bg-retrobg/90 p-4 sm:p-6 md:p-7 transition-shadow duration-300 hover:shadow-2xl group cursor-pointer block no-underline hover:shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.2),_15px_15px_rgba(0,_98,_90,_0.05)] dark:hover:shadow-[5px_5px_rgba(60,_120,_255,_0.4),_10px_10px_rgba(60,_120,_255,_0.2),_15px_15px_rgba(60,_120,_255,_0.05)] theme-retro:hover:shadow-[5px_5px_rgba(247,_155,_114,_0.4),_10px_10px_rgba(247,_155,_114,_0.2),_15px_15px_rgba(247,_155,_114,_0.05)]"
+        className="w-full max-w-xl sm:max-w-lg md:max-w-xl rounded-2xl border border-retroborder bg-retrobg/90 p-4 sm:p-6 md:p-7 transition-shadow duration-300 group cursor-pointer block no-underline hover:shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.2),_15px_15px_rgba(0,_98,_90,_0.05)] dark:hover:shadow-[5px_5px_rgba(60,_120,_255,_0.4),_10px_10px_rgba(60,_120,_255,_0.2),_15px_15px_rgba(60,_120,_255,_0.05)] theme-retro:hover:shadow-[5px_5px_rgba(247,_155,_114,_0.4),_10px_10px_rgba(247,_155,_114,_0.2),_15px_15px_rgba(247,_155,_114,_0.05)]"
       >
         <h2 className="text-xl sm:text-2xl font-extrabold text-retroaccent mb-2">{title}</h2>
         <div className="flex gap-2 mb-2 flex-wrap">
@@ -119,7 +119,6 @@ export default function Home({ params }) {
               style={{ background: 'none', color: 'inherit', fontFamily: 'Roboto, sans-serif', opacity: theme === 'light' ? 1 : 0.5, fontWeight: theme === 'light' ? 'bold' : 'normal', border: 'none' }}
               className="relative inline-flex h-8 w-32 overflow-hidden rounded-full p-[1px] focus:outline-none mb-1"
             >
-              <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
               <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-retrobg px-4 py-1 text-sm font-medium text-retrotext backdrop-blur-3xl">
                 Light
               </span>
@@ -129,17 +128,15 @@ export default function Home({ params }) {
               style={{ background: 'none', color: 'inherit', fontFamily: 'Roboto, sans-serif', opacity: theme === 'retro' ? 1 : 0.5, fontWeight: theme === 'retro' ? 'bold' : 'normal', border: 'none' }}
               className="relative inline-flex h-8 w-32 overflow-hidden rounded-full p-[1px] focus:outline-none mb-1"
             >
-              <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
               <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-retrobg px-4 py-1 text-sm font-medium text-retrotext backdrop-blur-3xl">
                 Retro
               </span>
             </button>
             <button
               onClick={() => handleThemeSelect('dark')}
-              style={{ background: 'none', color: 'inherit', fontFamily: 'Roboto, sans-serif', opacity: theme === 'dark' ? 1 : 0.5, fontWeight: theme === 'dark' ? 'bold' : 'normal', border: 'none' }}
-              className="relative inline-flex h-8 w-32 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-none"
+              style={{ background: 'none', color: 'inherit', fontFamily: 'Roboto, sans-serif', opacity: theme === 'dark' ? 1 : 0.5, fontWeight: theme === 'dark' ? 'bold' : 'normal' }}
+              className="relative inline-flex h-8 w-32 overflow-hidden rounded-full p-[1px] focus:outline-none hover:border-slate-300"
             >
-              <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
               <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-retrobg px-4 py-1 text-sm font-medium text-retrotext backdrop-blur-3xl">
                 Dark
               </span>
@@ -154,7 +151,7 @@ export default function Home({ params }) {
             className="relative inline-flex h-8 w-24 overflow-hidden rounded-full p-[1px] focus:outline-none"
             style={{ fontFamily: 'Roboto, sans-serif' }}
           >
-            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#000000_0%,#f1f1ff_50%,#000000_100%)]" />
             <span className="inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-retrobg px-4 py-1 text-sm font-medium text-retrotext backdrop-blur-3xl">
               <Github size={18} color={githubIconColor} />
               Star
@@ -174,7 +171,7 @@ export default function Home({ params }) {
           <div className="flex flex-col items-center gap-6">
             <BlogPreview
               title="Smartphone era v/s AI era"
-              date="June 2024"
+              date="July 2025"
               tags={['AI', 'Technology', 'Trends']}
               excerpt="Remember when smartphones first took over? One day you were flipping a Nokia brick, and the next, you’re arguing with Siri about the weather. Now, AI’s doing the same—whispering sweet nothings like: “Here’s a poem about your cat in the style of Shakespeare”—and we’re all just along for the ride."
               href="/blogs/smartphone-vs-ai-era"
