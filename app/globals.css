@@ -34,6 +34,10 @@ html::selection {
   background: #000000;
   color: #ffffff;
 }
+.theme-dark::selection{
+  background: #8dbffd;
+  color: #203745;
+}
 
 .theme-dark html::selection {
   background: #ffffff;

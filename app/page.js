@@ -103,12 +103,6 @@ export default function Home({ params }) {
 
   return (
     <div className="relative min-h-screen w-full text-retrotext flex flex-col font-retro overflow-hidden scrollbar-hide font-bolder">
-      {isDesktop && (
-        <BackgroundSVG
-          className="hidden md:block absolute inset-0 w-full h-full min-h-screen min-w-full -z-10 pointer-events-none select-none"
-          preserveAspectRatio="xMidYMid slice"
-        />
-      )}
       <div
         className={cn(
           "absolute inset-0",
