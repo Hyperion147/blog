@@ -3,10 +3,12 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useTheme } from "@/components/ThemeProvider";
 import * as React from "react";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Github, Sun, Moon } from "lucide-react";
-// Import preview content from the blog page
-import SmartphoneBlog from "./blogs/smartphone-vs-ai-era/page";
+import BackgroundSVG from "@/components/BackgroundSVG";
+import { useIsDesktop } from "@/components/useIsDesktop";
+
 
 export default function Home({ params }) {
   const headerRef = useRef(null);
@@ -17,6 +19,7 @@ export default function Home({ params }) {
   const dropdownRef = React.useRef(null);
   const closingTimeout = React.useRef();
   const githubButtonRef = useRef(null);
+  const isDesktop = useIsDesktop();
 
   // Determine icon color based on theme
   let githubIconColor = "#334155"; // slate-700 default
@@ -84,12 +87,12 @@ export default function Home({ params }) {
     return (
       <Link
         href={href}
-        className="w-full max-w-xl sm:max-w-lg md:max-w-xl rounded-2xl border border-retroborder bg-retrobg/90 p-4 sm:p-6 md:p-7 transition-shadow duration-300 group cursor-pointer block no-underline hover:shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.2),_15px_15px_rgba(0,_98,_90,_0.05)] dark:hover:shadow-[5px_5px_rgba(60,_120,_255,_0.4),_10px_10px_rgba(60,_120,_255,_0.2),_15px_15px_rgba(60,_120,_255,_0.05)] theme-retro:hover:shadow-[5px_5px_rgba(247,_155,_114,_0.4),_10px_10px_rgba(247,_155,_114,_0.2),_15px_15px_rgba(247,_155,_114,_0.05)]"
+        className="w-full max-w-xl sm:max-w-lg md:max-w-xl rounded-2xl border p-4 sm:p-6 md:p-7 transition-shadow duration-300 group cursor-pointer block no-underline hover:shadow-[5px_5px_rgba(0,_98,_90,_0.4),_10px_10px_rgba(0,_98,_90,_0.2),_15px_15px_rgba(0,_98,_90,_0.05)] dark:hover:shadow-[5px_5px_rgba(60,_120,_255,_0.4),_10px_10px_rgba(60,_120,_255,_0.2),_15px_15px_rgba(60,_120,_255,_0.05)] theme-retro:hover:shadow-[5px_5px_rgba(247,_155,_114,_0.4),_10px_10px_rgba(247,_155,_114,_0.2),_15px_15px_rgba(247,_155,_114,_0.05)] backdrop-blur-lg"
       >
         <h2 className="text-xl sm:text-2xl font-extrabold text-retroaccent mb-2">{title}</h2>
         <div className="flex gap-2 mb-2 flex-wrap">
           {tags.map((tag, i) => (
-            <span key={i} className="bg-retroaccent/10 text-retroaccent px-2 py-0.5 rounded text-xs sm:text-sm font-mono border border-retroborder">{tag}</span>
+            <span key={i} className="bg-retroaccent/10 text-retroaccent px-2 py-0.5 rounded text-xs sm:text-sm font-mono border border-retroaccent">{tag}</span>
           ))}
         </div>
         <div className="text-xs sm:text-sm text-retroblue font-mono mb-3">{date}</div>
@@ -99,7 +102,22 @@ export default function Home({ params }) {
   }
 
   return (
-    <div className="h-screen w-screen bg-retrobg text-retrotext flex flex-col font-retro overflow-hidden scrollbar-hide relative font-bolder">
+    <div className="relative min-h-screen w-full text-retrotext flex flex-col font-retro overflow-hidden scrollbar-hide font-bolder">
+      {isDesktop && (
+        <BackgroundSVG
+          className="hidden md:block absolute inset-0 w-full h-full min-h-screen min-w-full -z-10 pointer-events-none select-none"
+          preserveAspectRatio="xMidYMid slice"
+        />
+      )}
+      <div
+        className={cn(
+          "absolute inset-0",
+          "[background-size:70px_70px] opacity-10",
+          "dark:[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_10px)]",
+        )}
+      />
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white 
+      [mask-image:radial-gradient(ellipse_at_center,transparent_10%,black)] dark:bg-slate-300"></div>
       {/* Theme Selector Button (top right) */}
       <div className="absolute top-6 right-8 z-50">
         <button
@@ -179,7 +197,7 @@ export default function Home({ params }) {
           </div>
         </section>
       </main>
-      <footer ref={footerRef} className="w-full py-6 border-t border-retroborder text-center text-retrotext/60 text-base flex items-center justify-center bg-retrobg font-mono">
+      <footer ref={footerRef} className="w-full py-6 border-t border-gray-400 text-center text-retrotext/60 text-base flex items-center justify-center font-mono">
         <span className="w-full">© {new Date().getFullYear()} blog | suryansu. All rights reserved.</span>
       </footer>
     </div>
