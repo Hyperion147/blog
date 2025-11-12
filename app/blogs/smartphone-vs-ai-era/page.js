@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import * as React from "react";
 import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
@@ -6,6 +7,7 @@ import Link from "next/link";
 import { useTheme } from "@/components/ThemeProvider";
 import { Book, Sun, Moon } from "lucide-react";
 import { Barlow } from "next/font/google";
+import ArtPlumCanvas from "@/components/ArtPlum";
 
 const barlow = Barlow({ subsets: ["latin"], weight: ["700"] });
 
@@ -22,21 +24,21 @@ export default function BlogPage() {
       gsap.fromTo(
         containerRef.current,
         { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }
+        { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" },
       );
     }
     if (buttonRef.current) {
       gsap.fromTo(
         buttonRef.current,
         { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 0.7, ease: "power2.out", delay: 0.1 }
+        { opacity: 1, y: 0, duration: 0.7, ease: "power2.out", delay: 0.1 },
       );
     }
     if (themeButtonRef.current) {
       gsap.fromTo(
         themeButtonRef.current,
         { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 0.7, ease: "power2.out", delay: 0.2 }
+        { opacity: 1, y: 0, duration: 0.7, ease: "power2.out", delay: 0.2 },
       );
     }
   }, []);
@@ -45,24 +47,30 @@ export default function BlogPage() {
     if (themeMenuOpen && dropdownRef.current) {
       gsap.fromTo(
         dropdownRef.current,
-        { opacity: 0, y: -10, pointerEvents: 'none' },
-        { opacity: 1, y: 0, pointerEvents: 'auto', duration: 0.35, ease: 'power2.out' }
+        { opacity: 0, y: -10, pointerEvents: "none" },
+        {
+          opacity: 1,
+          y: 0,
+          pointerEvents: "auto",
+          duration: 0.35,
+          ease: "power2.out",
+        },
       );
     }
   }, [themeMenuOpen]);
 
   useEffect(() => {
     if (themeMenuOpen && themeButtonRef.current) {
-      gsap.to(themeButtonRef.current.querySelector('button'), {
-        width: '128px',
+      gsap.to(themeButtonRef.current.querySelector("button"), {
+        width: "128px",
         duration: 0.35,
-        ease: 'power2.out',
+        ease: "power2.out",
       });
     } else if (!themeMenuOpen && themeButtonRef.current) {
-      gsap.to(themeButtonRef.current.querySelector('button'), {
-        width: '32px',
+      gsap.to(themeButtonRef.current.querySelector("button"), {
+        width: "32px",
         duration: 0.35,
-        ease: 'power2.in',
+        ease: "power2.in",
       });
     }
   }, [themeMenuOpen]);
@@ -72,9 +80,9 @@ export default function BlogPage() {
       gsap.to(dropdownRef.current, {
         opacity: 0,
         y: -10,
-        pointerEvents: 'none',
+        pointerEvents: "none",
         duration: 0.3,
-        ease: 'power2.in',
+        ease: "power2.in",
         onComplete: () => {
           setTheme(selectedTheme);
           setThemeMenuOpen(false);
@@ -106,7 +114,7 @@ export default function BlogPage() {
   const contentBody31 = `Smartphones sit in your pocket. <b>AI?</b> Knows you secretly love ~yodeling videos.`;
   const contentBody32 = `Your phone doesn’t evolve. <b>AI does.</b><br> Cue <em>“Wait, it’s getting smarter? Should we unplug it?”</em> debates.`;
   const contentBody33 = `Smartphones didn’t write novels or fake Drake songs.`;
-  const contentBody34 = `AI’s out here generating stuff—art, code, conspiracy theories. What’s next, AI stand-up comedy?<br> <em>…Actually, we should try every idea.<em>`;
+  const contentBody34 = `AI’s out here generating stuff—art, code, conspiracy theories. What’s next, AI stand-up comedy?<br> <em>…Actually, we should try every idea.</em>`;
   const contentBold4 = `Final Verdict: Same Impact, Different Game`;
   const contentBody41 = `<b>Like smartphones?</b> Yes—AI will reshape jobs, habits, and how we (iota) procrastinate.`;
   const contentBody42 = `<b>Different?</b> Absolutely. Smartphones connected us. AI might replace us <em>kidding… mostly.</em>`;
@@ -116,7 +124,7 @@ export default function BlogPage() {
   const tagDescriptions = {
     AI: "Artificial Intelligence",
     Technology: "Tools, devices, and innovations.",
-    Trends: "What's popular!"
+    Trends: "What's popular!",
   };
 
   // TagWithTooltip component
@@ -127,16 +135,22 @@ export default function BlogPage() {
       if (show && tooltipRef.current) {
         gsap.fromTo(
           tooltipRef.current,
-          { opacity: 0, y: 8, pointerEvents: 'none' },
-          { opacity: 1, y: 0, pointerEvents: 'auto', duration: 0.18, ease: 'power2.out' }
+          { opacity: 0, y: 8, pointerEvents: "none" },
+          {
+            opacity: 1,
+            y: 0,
+            pointerEvents: "auto",
+            duration: 0.18,
+            ease: "power2.out",
+          },
         );
       } else if (!show && tooltipRef.current) {
         gsap.to(tooltipRef.current, {
           opacity: 0,
           y: 8,
-          pointerEvents: 'none',
+          pointerEvents: "none",
           duration: 0.12,
-          ease: 'power2.in',
+          ease: "power2.in",
         });
       }
     }, [show]);
@@ -148,13 +162,13 @@ export default function BlogPage() {
         onFocus={() => setShow(true)}
         onBlur={() => setShow(false)}
         tabIndex={0}
-        style={{ outline: 'none' }}
+        style={{ outline: "none" }}
       >
         {tag}
         <span
           ref={tooltipRef}
           className="absolute left-1/2 -translate-x-1/2 top-full mt-1 z-20 px-2 py-1 rounded bg-retrobg text-retrotext text-xs shadow-lg border border-retroborder whitespace-nowrap pointer-events-none select-none hidden md:flex"
-          style={{ opacity: 0, pointerEvents: 'none' }}
+          style={{ opacity: 0, pointerEvents: "none" }}
         >
           {description}
         </span>
@@ -163,13 +177,14 @@ export default function BlogPage() {
   }
 
   return (
-    <>
+    <div className="overflow-x-hidden">
+      <ArtPlumCanvas />
       {/* Blogs button top left */}
       <div ref={buttonRef} className="absolute top-6 left-6 z-50">
         <Link href="/">
           <button
             className="relative inline-flex h-8 w-8 overflow-hidden rounded-full p-[1px] focus:outline-none"
-            style={{ fontFamily: 'Roboto, sans-serif' }}
+            style={{ fontFamily: "Roboto, sans-serif" }}
           >
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
             <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-retrobg px-0 py-1 text-xs font-medium text-retrotext backdrop-blur-3xl">
@@ -183,26 +198,30 @@ export default function BlogPage() {
         <button
           onClick={() => setThemeMenuOpen((open) => !open)}
           className="relative inline-flex h-8 w-8 overflow-hidden rounded-full p-[1px] focus:outline-none"
-          style={{ fontFamily: 'Roboto, sans-serif', width: '32px', transition: 'width 0.35s cubic-bezier(0.4,0,0.2,1)' }}
+          style={{
+            fontFamily: "Roboto, sans-serif",
+            width: "32px",
+            transition: "width 0.35s cubic-bezier(0.4,0,0.2,1)",
+          }}
         >
           <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
           <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-retrobg px-0 py-1 text-xs font-medium text-retrotext backdrop-blur-3xl">
-            {theme === 'dark' ? <Moon size={18} /> : <Sun size={18} />}
+            {theme === "dark" ? <Moon size={18} /> : <Sun size={18} />}
           </span>
         </button>
         {themeMenuOpen && (
           <div ref={dropdownRef} className="w-32 flex flex-col items-end mt-1">
-            {['light', 'retro', 'dark'].map((t) => (
+            {["light", "retro", "dark"].map((t) => (
               <button
                 key={t}
                 onClick={() => handleThemeSelect(t)}
                 style={{
-                  background: 'none',
-                  color: 'inherit',
-                  fontFamily: 'Roboto, sans-serif',
+                  background: "none",
+                  color: "inherit",
+                  fontFamily: "Roboto, sans-serif",
                   opacity: theme === t ? 1 : 0.5,
-                  fontWeight: theme === t ? 'bold' : 'normal',
-                  border: 'none',
+                  fontWeight: theme === t ? "bold" : "normal",
+                  border: "none",
                 }}
                 className="relative inline-flex h-8 w-32 overflow-hidden rounded-full p-[1px] focus:outline-none mb-1"
               >
@@ -215,38 +234,115 @@ export default function BlogPage() {
           </div>
         )}
       </div>
-      <div ref={containerRef} className="max-w-2xl mx-auto py-12 px-4 pt-16 md:pt-12">
-        <h1 className={`text-3xl font-extrabold mb-2 text-retroaccent ${barlow.className}`}>{title}</h1>
+      <div
+        ref={containerRef}
+        className="max-w-2xl mx-auto py-12 px-6 pt-16 md:pt-12"
+      >
+        <h1
+          className={`text-3xl font-extrabold mb-2 text-retroaccent ${barlow.className}`}
+        >
+          {title}
+        </h1>
         <div className="flex gap-2 mb-4">
           {tags.map((tag, i) => (
-            <TagWithTooltip key={i} tag={tag} description={tagDescriptions[tag] || tag} />
+            <TagWithTooltip
+              key={i}
+              tag={tag}
+              description={tagDescriptions[tag] || tag}
+            />
           ))}
         </div>
         <div className="text-xs text-retroblue font-bold font-mono">{date}</div>
-        <div className="prose prose-retro max-w-none opacity-70" dangerouslySetInnerHTML={{ __html: contentStart }} />
-        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentPitch }} />
-        <div className="prose prose-retro max-w-none font-bold" dangerouslySetInnerHTML={{ __html: contentBold1 }} />
-        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody11 }} />
-        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody12 }} />
-        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody13 }} />
-        <div className="prose prose-retro max-w-none font-bold mt-4" dangerouslySetInnerHTML={{ __html: contentBold2 }} />
-        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody21 }} />
-        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody22 }} />
-        <div className="prose prose-retro max-w-none font-semibold" dangerouslySetInnerHTML={{ __html: contentBody23 }} />
-        <div className="prose prose-retro max-w-none font-semibold" dangerouslySetInnerHTML={{ __html: contentBody24 }} />
-        <div className="prose prose-retro max-w-none font-semibold" dangerouslySetInnerHTML={{ __html: contentBody25 }} />
-        <div className="prose prose-retro max-w-none mt-4" dangerouslySetInnerHTML={{ __html: contentBold3 }} />
-        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody31 }} />
-        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody32 }} />
-        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody33 }} />
-        <div className="prose prose-retro max-w-none font-semibold" dangerouslySetInnerHTML={{ __html: contentBody34 }} />
-        <div className="prose prose-retro max-w-none mt-4 font-bold" dangerouslySetInnerHTML={{ __html: contentBold4 }} />
-        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody41 }} />
+        <div
+          className="prose prose-retro max-w-none opacity-70"
+          dangerouslySetInnerHTML={{ __html: contentStart }}
+        />
+        <div
+          className="prose prose-retro max-w-none"
+          dangerouslySetInnerHTML={{ __html: contentPitch }}
+        />
+        <div
+          className="prose prose-retro max-w-none font-bold"
+          dangerouslySetInnerHTML={{ __html: contentBold1 }}
+        />
+        <div
+          className="prose prose-retro max-w-none"
+          dangerouslySetInnerHTML={{ __html: contentBody11 }}
+        />
+        <div
+          className="prose prose-retro max-w-none"
+          dangerouslySetInnerHTML={{ __html: contentBody12 }}
+        />
+        <div
+          className="prose prose-retro max-w-none"
+          dangerouslySetInnerHTML={{ __html: contentBody13 }}
+        />
+        <div
+          className="prose prose-retro max-w-none font-bold mt-4"
+          dangerouslySetInnerHTML={{ __html: contentBold2 }}
+        />
+        <div
+          className="prose prose-retro max-w-none"
+          dangerouslySetInnerHTML={{ __html: contentBody21 }}
+        />
+        <div
+          className="prose prose-retro max-w-none"
+          dangerouslySetInnerHTML={{ __html: contentBody22 }}
+        />
+        <div
+          className="prose prose-retro max-w-none font-semibold"
+          dangerouslySetInnerHTML={{ __html: contentBody23 }}
+        />
+        <div
+          className="prose prose-retro max-w-none font-semibold"
+          dangerouslySetInnerHTML={{ __html: contentBody24 }}
+        />
+        <div
+          className="prose prose-retro max-w-none font-semibold"
+          dangerouslySetInnerHTML={{ __html: contentBody25 }}
+        />
+        <div
+          className="prose prose-retro max-w-none mt-4"
+          dangerouslySetInnerHTML={{ __html: contentBold3 }}
+        />
+        <div
+          className="prose prose-retro max-w-none"
+          dangerouslySetInnerHTML={{ __html: contentBody31 }}
+        />
+        <div
+          className="prose prose-retro max-w-none"
+          dangerouslySetInnerHTML={{ __html: contentBody32 }}
+        />
+        <div
+          className="prose prose-retro max-w-none"
+          dangerouslySetInnerHTML={{ __html: contentBody33 }}
+        />
+        <div
+          className="prose prose-retro max-w-none font-semibold"
+          dangerouslySetInnerHTML={{ __html: contentBody34 }}
+        />
+        <div
+          className="prose prose-retro max-w-none mt-4 font-bold"
+          dangerouslySetInnerHTML={{ __html: contentBold4 }}
+        />
+        <div
+          className="prose prose-retro max-w-none"
+          dangerouslySetInnerHTML={{ __html: contentBody41 }}
+        />
         <p className="text-xs">iota in mathematics means "i" ~ me</p>
-        <div className="prose prose-retro max-w-none" dangerouslySetInnerHTML={{ __html: contentBody42 }} />
-        <div className="prose prose-retro max-w-none mt-4 font-medium text-center" dangerouslySetInnerHTML={{ __html: contentBody43 }} />
-        <div className="prose prose-retro max-w-none mt-2 text-xs text-right" dangerouslySetInnerHTML={{ __html: contentSign }} />
+        <div
+          className="prose prose-retro max-w-none"
+          dangerouslySetInnerHTML={{ __html: contentBody42 }}
+        />
+        <div
+          className="prose prose-retro max-w-none mt-4 font-medium text-center"
+          dangerouslySetInnerHTML={{ __html: contentBody43 }}
+        />
+        <div
+          className="prose prose-retro max-w-none mt-2 text-xs text-right"
+          dangerouslySetInnerHTML={{ __html: contentSign }}
+        />
       </div>
-    </>
+    </div>
   );
-} 
+}
