@@ -66,7 +66,7 @@ export default function FixedButton({
   return (
     <div
       ref={wrapperRef}
-      className="fixed top-12 left-10 z-50"
+      className="hidden md:block fixed top-12 right-5 md:left-10 z-50"
     >
       <Link href={href}>
         <button

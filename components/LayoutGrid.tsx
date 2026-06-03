@@ -53,7 +53,7 @@ export default function LayoutGrid({
   horizontalLines = [],
 }: LayoutGridProps) {
   return (
-    <div className={`pointer-events-none absolute inset-0 ${className}`}>
+    <div className={`pointer-events-none md:block hidden absolute inset-0 ${className}`}>
       {verticalLines.map((line, index) => (
         <div
           key={`vertical-${index}-${line.at}`}

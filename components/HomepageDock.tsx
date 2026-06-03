@@ -31,7 +31,7 @@ const socialLinks = [
 
 export default function HomepageDock() {
   return (
-    <div className="fixed bottom-8 right-17 z-50">
+    <div className="fixed bottom-2 right-2 md:bottom-8 md:right-17 z-50">
       <div className="flex items-center gap-2 border border-retroborder bg-[rgb(var(--theme-bg-rgb)/0.92)] px-2 py-2 backdrop-blur-xl">
         {socialLinks.map(({ href, label, icon: Icon }) => (
           <Link
