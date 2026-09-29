@@ -2,14 +2,31 @@
 
 :root {
   --theme-bg: #EEEEEE; /* background */
+  --theme-bg-rgb: 238 238 238;
   --theme-text: #2A4759; /* text */
+  --theme-text-rgb: 42 71 89;
   --theme-accent: #F79B72; /* accent */
+  --theme-accent-rgb: 247 155 114;
   --theme-border: #DDDDDD; /* border */
+  --theme-border-rgb: 221 221 221;
 }
 
 body {
   background: var(--theme-bg);
   color: var(--theme-text);
+  font-family: var(--font-body), sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), sans-serif;
+}
+
+.font-body {
+  font-family: var(--font-body), sans-serif;
+}
+
+.font-mono-ui {
+  font-family: var(--font-mono), monospace;
 }
 
 ::selection {
